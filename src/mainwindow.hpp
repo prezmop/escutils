@@ -14,12 +14,13 @@ public:
 protected:
 	void cryptoModeSelected( wxCommandEvent& ) override;
 	void cryptoFilePicked( wxFileDirPickerEvent& ) override;
-	void cryptoFileSaved( wxFileDirPickerEvent& event ) override;
+	//void cryptoFileSaved( wxFileDirPickerEvent& event ) override;
+	void cryptoSave( wxCommandEvent& event ) override;
 private:
 	cryptoMode currentMode = cryptoMode::decr;
 
-	void updateSaveName();
-	void updateSavePath() {};
+	//void updateSaveName();
+	//void updateSavePath() {};
 };
 
 #endif
