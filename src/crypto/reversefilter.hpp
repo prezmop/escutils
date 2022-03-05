@@ -1,7 +1,6 @@
 #ifndef REVERSEFILTER_HPP_
 #define REVERSEFILTER_HPP_
 
-#include <stdexcept>
 #include <algorithm>
 #include <cryptopp/filters.h>
 
