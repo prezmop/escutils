@@ -1,7 +1,5 @@
 #include "nullstripfilter.hpp"
 
-#include <iostream>
-
 std::size_t NullStripFilter::Put2(const CryptoPP::byte * inString,
 		std::size_t length, int messageEnd, bool blocking){
 	std::size_t i;
