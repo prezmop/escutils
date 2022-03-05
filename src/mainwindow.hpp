@@ -4,8 +4,8 @@
 #include "wxwin/window.h"
 #include <iostream>
 
-enum cryptoMode                         { decr = 0,  encr = 1};
-const std::string cryptoExtensions[2] = {"_decr"  ,"_encr"   };
+enum cryptoMode                         {  decr = 0,  encr = 1};
+const std::string cryptoExtensions[2] = {"_decr"   ,"_encr"   };
 
 class MainWindow : public MainWindowBase
 {
@@ -14,13 +14,10 @@ public:
 protected:
 	void cryptoModeSelected( wxCommandEvent& ) override;
 	void cryptoFilePicked( wxFileDirPickerEvent& ) override;
-	//void cryptoFileSaved( wxFileDirPickerEvent& event ) override;
-	void cryptoSave( wxCommandEvent& event ) override;
+	void cryptoSave( wxCommandEvent& ) override;
+	void mainWinClose( wxCloseEvent& ) override;
 private:
 	cryptoMode currentMode = cryptoMode::decr;
-
-	//void updateSaveName();
-	//void updateSavePath() {};
 };
 
 #endif

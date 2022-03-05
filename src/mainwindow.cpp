@@ -39,3 +39,8 @@ void MainWindow::cryptoSave( wxCommandEvent& ) {
 		}
 	}
 }
+
+void MainWindow::mainWinClose( wxCloseEvent& ) {
+	//calling this->Close() causes a segfault
+	this->Destroy();
+}
