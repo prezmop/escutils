@@ -21,18 +21,8 @@ public:
 			CryptoPP::SecByteBlock newBuffer(((length / blockSize) + 1) * blockSize );
 
 			for(std::size_t i = 0;i < length; i++){
-				std::cout << "writing " << i << " to " << (i / blockSize) * blockSize + (blockSize - (i % blockSize) - 1) << '\n';
 				newBuffer.data()[(i / blockSize) * blockSize + (blockSize - (i % blockSize) - 1)] = inString[i];
 			}
-			std::cout << "done \n";
-			/*
-			for(std::size_t i = 0;i < length % blockSize;i++){
-				newBuffer[newBuffer.size() - blockSize + i] = 0x00;
-			}*/
-			/*
-			throw std::invalid_argument(
-				"ReverseFilter : message size must be a multiple of the block size" );*/
-
 			return AttachedTransformation()->Put2(
 				newBuffer.data(), newBuffer.size(), messageEnd, blocking );
 		}else{
