@@ -4,7 +4,7 @@
 #include <sstream>
 #include <wx/wx.h>
 
-#include "cryptography.hpp"
+#include "crypto/cryptography.hpp"
 #include "mainwindow.hpp"
 
 class MyApp : public wxApp

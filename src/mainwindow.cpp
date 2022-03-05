@@ -3,7 +3,7 @@
 #include <fstream>
 #include <wx/filedlg.h>
 
-#include "cryptography.hpp"
+#include "crypto/cryptography.hpp"
 
 void MainWindow::cryptoModeSelected( wxCommandEvent& ){
 	currentMode = static_cast<cryptoMode>(cryptoModeSelector->GetSelection());
