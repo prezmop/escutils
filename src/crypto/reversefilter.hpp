@@ -31,7 +31,7 @@ public:
 			}
 
 			return AttachedTransformation()->Put2(
-					inString, length, messageEnd, blocking );
+				inString, length, messageEnd, blocking );
 		}
 	}
 
