@@ -25,7 +25,7 @@ set(CRYPTOPP_INCLUDE ${CMAKE_CURRENT_BINARY_DIR}/lib/cryptopp/include/)
 find_package(wxWidgets REQUIRED COMPONENTS core base)
 include(${wxWidgets_USE_FILE})
 
-add_executable(escutils src/main.cpp src/cryptography.cpp src/mainwindow.cpp src/wxwin/window.cpp)
+add_executable(escutils src/main.cpp src/crypto/cryptography.cpp src/mainwindow.cpp src/wxwin/window.cpp)
 target_include_directories(escutils PRIVATE ${CRYPTOPP_INCLUDE})
 target_link_libraries(escutils ${CRYPTOPP_LIB})
 target_link_libraries(escutils ${wxWidgets_LIBRARIES})
