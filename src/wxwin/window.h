@@ -45,6 +45,7 @@ class MainWindowBase : public wxDialog
 		wxButton* cryptoAction;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void mainWinClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void cryptoFilePicked( wxFileDirPickerEvent& event ) { event.Skip(); }
 		virtual void cryptoModeSelected( wxCommandEvent& event ) { event.Skip(); }
 		virtual void cryptoSave( wxCommandEvent& event ) { event.Skip(); }
@@ -52,7 +53,7 @@ class MainWindowBase : public wxDialog
 
 	public:
 
-		MainWindowBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("escapists utilities"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,230 ), long style = wxDEFAULT_DIALOG_STYLE );
+		MainWindowBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("escapists utilities"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,-1 ), long style = wxDEFAULT_DIALOG_STYLE );
 
 		~MainWindowBase();
 

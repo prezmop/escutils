@@ -11,7 +11,7 @@
 
 MainWindowBase::MainWindowBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 500,230 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( 500,-1 ), wxDefaultSize );
 
 	wxBoxSizer* mainSizer;
 	mainSizer = new wxBoxSizer( wxVERTICAL );
@@ -35,7 +35,7 @@ MainWindowBase::MainWindowBase( wxWindow* parent, wxWindowID id, const wxString&
 	int cryptoModeSelectorNChoices = sizeof( cryptoModeSelectorChoices ) / sizeof( wxString );
 	cryptoModeSelector = new wxRadioBox( crypto, wxID_ANY, wxT("mode"), wxDefaultPosition, wxDefaultSize, cryptoModeSelectorNChoices, cryptoModeSelectorChoices, 1, wxRA_SPECIFY_COLS );
 	cryptoModeSelector->SetSelection( 0 );
-	cryptoModeSelector->SetMinSize( wxSize( 150,90 ) );
+	cryptoModeSelector->SetMinSize( wxSize( 150,-1 ) );
 
 	bSizer3->Add( cryptoModeSelector, 0, wxALL, 5 );
 
@@ -55,7 +55,7 @@ MainWindowBase::MainWindowBase( wxWindow* parent, wxWindowID id, const wxString&
 	crypto->SetSizer( bSizer6 );
 	crypto->Layout();
 	bSizer6->Fit( crypto );
-	mainNotebook->AddPage( crypto, wxT("encrypt/decrypt"), false );
+	mainNotebook->AddPage( crypto, wxT("decrypt/encrypt"), false );
 
 	mainSizer->Add( mainNotebook, 1, wxEXPAND, 5 );
 
@@ -66,6 +66,7 @@ MainWindowBase::MainWindowBase( wxWindow* parent, wxWindowID id, const wxString&
 	this->Centre( wxBOTH );
 
 	// Connect Events
+	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( MainWindowBase::mainWinClose ) );
 	cryptoFileInput->Connect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( MainWindowBase::cryptoFilePicked ), NULL, this );
 	cryptoModeSelector->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( MainWindowBase::cryptoModeSelected ), NULL, this );
 	cryptoAction->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainWindowBase::cryptoSave ), NULL, this );
@@ -74,6 +75,7 @@ MainWindowBase::MainWindowBase( wxWindow* parent, wxWindowID id, const wxString&
 MainWindowBase::~MainWindowBase()
 {
 	// Disconnect Events
+	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( MainWindowBase::mainWinClose ) );
 	cryptoFileInput->Disconnect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( MainWindowBase::cryptoFilePicked ), NULL, this );
 	cryptoModeSelector->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( MainWindowBase::cryptoModeSelected ), NULL, this );
 	cryptoAction->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainWindowBase::cryptoSave ), NULL, this );
