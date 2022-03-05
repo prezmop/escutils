@@ -25,8 +25,8 @@ void MainWindow::cryptoSave( wxCommandEvent& ) {
 		return;
 	}
 
-	std::ifstream ifile( cryptoFileInput->GetPath(), std::fstream::binary|std::fstream::in );
-	std::ofstream ofile( dialog.GetPath(), std::fstream::binary|std::fstream::out );
+	std::ifstream ifile( static_cast<std::string>(cryptoFileInput->GetPath()), std::fstream::binary|std::fstream::in );
+	std::ofstream ofile( static_cast<std::string>(dialog.GetPath()), std::fstream::binary|std::fstream::out );
 
 	if (ifile.good()){
 		switch(currentMode){
