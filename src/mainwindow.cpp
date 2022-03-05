@@ -7,6 +7,7 @@
 
 void MainWindow::cryptoModeSelected( wxCommandEvent& ){
 	currentMode = static_cast<cryptoMode>(cryptoModeSelector->GetSelection());
+	cryptoPadCheckbox->Show(currentMode == decr);
 }
 
 void MainWindow::cryptoFilePicked( wxFileDirPickerEvent& ){
@@ -31,7 +32,7 @@ void MainWindow::cryptoSave( wxCommandEvent& ) {
 	if (ifile.good()){
 		switch(currentMode){
 		case decr:
-			decrypt(ifile,ofile);
+			decrypt(ifile,ofile,cryptoPadCheckbox->GetValue());
 			break;
 		case encr:
 			encrypt(ifile,ofile);

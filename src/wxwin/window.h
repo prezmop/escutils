@@ -17,11 +17,12 @@
 #include <wx/settings.h>
 #include <wx/filepicker.h>
 #include <wx/radiobox.h>
+#include <wx/checkbox.h>
+#include <wx/sizer.h>
 #include <wx/button.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
-#include <wx/sizer.h>
 #include <wx/panel.h>
 #include <wx/notebook.h>
 #include <wx/dialog.h>
@@ -42,12 +43,14 @@ class MainWindowBase : public wxDialog
 		wxStaticText* m_staticText1;
 		wxFilePickerCtrl* cryptoFileInput;
 		wxRadioBox* cryptoModeSelector;
+		wxCheckBox* cryptoPadCheckbox;
 		wxButton* cryptoAction;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void mainWinClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void cryptoFilePicked( wxFileDirPickerEvent& event ) { event.Skip(); }
 		virtual void cryptoModeSelected( wxCommandEvent& event ) { event.Skip(); }
+		virtual void cryptoNullbtesToggled( wxCommandEvent& event ) { event.Skip(); }
 		virtual void cryptoSave( wxCommandEvent& event ) { event.Skip(); }
 
 
