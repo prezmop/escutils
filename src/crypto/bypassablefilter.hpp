@@ -6,7 +6,7 @@
 
 class BypassableFilter : public CryptoPP::Filter {
 public:
-	BypassableFilter(bool use,BufferedTransformation* bypass, BufferedTransformation* next = NULL)
+	BypassableFilter( bool use, BufferedTransformation* bypass, BufferedTransformation* next = NULL )
 		: Filter(use ? bypass : next) {
 		if (use){
 			bypass->Attach(next);
