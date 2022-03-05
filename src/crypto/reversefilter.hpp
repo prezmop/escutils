@@ -36,7 +36,7 @@ public:
 		}
 	}
 
-	bool IsolatedFlush(bool hardFlush, bool blocking){
+	bool IsolatedFlush( bool, bool){
 		return false;
 	}
 };
