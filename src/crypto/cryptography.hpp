@@ -5,6 +5,6 @@
 #include <ostream>
 
 void encrypt(std::istream& in,std::ostream& out);
-void decrypt(std::istream& in,std::ostream& out);
+void decrypt(std::istream& in,std::ostream& out, bool stripNull = false);
 
 #endif
