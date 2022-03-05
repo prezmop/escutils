@@ -1,6 +1,7 @@
 #ifndef REVERSEFILTER_HPP_
 #define REVERSEFILTER_HPP_
 
+#include <stdexcept>
 #include <algorithm>
 #include <cryptopp/filters.h>
 
@@ -15,15 +16,9 @@ public:
 		std::size_t length, int messageEnd, bool blocking ){
 
 
-		if(length % blockSize != 0){
-			//we have to create a new (larger) buffer
-			CryptoPP::SecByteBlock newBuffer(((length / blockSize) + 1) * blockSize );
-
-			for(std::size_t i = 0;i < length; i++){
-				newBuffer.data()[(i / blockSize) * blockSize + (blockSize - (i % blockSize) - 1)] = inString[i];
-			}
-			return AttachedTransformation()->Put2(
-				newBuffer.data(), newBuffer.size(), messageEnd, blocking );
+		if(length %  blockSize != 0){
+			throw std::invalid_argument(
+					"ReverseFilter : message size must be a multiple of the block size" );
 		}else{
 
 			for(std::size_t i = 0;i < length; i += blockSize){

@@ -9,11 +9,15 @@
 #include "cryptokeys.hpp"
 #include "bypassablefilter.hpp"
 #include "nullstripfilter.hpp"
+#include "nullpadfilter.hpp"
 
-void pipeline(std::istream& in, std::ostream& out, CryptoPP::StreamTransformation& t, bool stripNull = false){
+void decrypt(std::istream& in,std::ostream& out, bool stripNull){
+	CryptoPP::ECB_Mode< CryptoPP::Blowfish >::Decryption d;
+	d.SetKey(defaultkey, defaultkeysize);
+
 	CryptoPP::FileSource s( in, true,
 		new ReverseFilter<4>(
-			new CryptoPP::StreamTransformationFilter( t,
+			new CryptoPP::StreamTransformationFilter( d,
 				new ReverseFilter<4>(
 					new BypassableFilter(stripNull, new NullStripFilter(),
 						new CryptoPP::FileSink( out )
@@ -25,17 +29,21 @@ void pipeline(std::istream& in, std::ostream& out, CryptoPP::StreamTransformatio
 	); // FileSource
 }
 
-void decrypt(std::istream& in,std::ostream& out, bool stripNull){
-	CryptoPP::ECB_Mode< CryptoPP::Blowfish >::Decryption d;
-	d.SetKey(defaultkey, defaultkeysize);
-
-	pipeline(in, out, d, stripNull);
-}
-
 void encrypt(std::istream& in,std::ostream& out){
 	CryptoPP::ECB_Mode< CryptoPP::Blowfish >::Encryption e;
 	e.SetKey(defaultkey, defaultkeysize);
 
-	pipeline(in, out, e);
+	CryptoPP::FileSource s( in, true,
+		new NullPadFilter<8>(
+			new ReverseFilter<4>(
+				new CryptoPP::StreamTransformationFilter( e,
+					new ReverseFilter<4>(
+						new CryptoPP::FileSink( out )
+					), // ReverseFilter
+					CryptoPP::BlockPaddingSchemeDef::BlockPaddingScheme::NO_PADDING
+				) // StreamTransformationFilter
+			) // ReverseFilter
+		) // NullPadFilter
+	); // FileSource
 }
 
