@@ -2,16 +2,15 @@
 
 #include "mainwindow.hpp"
 
-class MyApp : public wxApp
-{
-  public:
-    virtual bool OnInit();
+class MyApp : public wxApp {
+public:
+	virtual bool OnInit();
 };
 
 IMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit(){
 	MainWindow* frame = new MainWindow();
-    frame->Show(true);
-    return true;
+	frame->Show(true);
+	return true;
 }
