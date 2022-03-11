@@ -1,6 +1,5 @@
 #include <wx/wx.h>
 
-#include "crypto/cryptography.hpp"
 #include "mainwindow.hpp"
 
 class MyApp : public wxApp
