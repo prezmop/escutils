@@ -16,7 +16,7 @@ class MyApp : public wxApp
 IMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit(){
-	MainWindow *frame = new MainWindow(nullptr);
+	MainWindow* frame = new MainWindow();
     frame->Show(true);
     return true;
 }

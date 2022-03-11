@@ -66,6 +66,7 @@ target_sources(escutils PRIVATE
 	src/crypto/cryptography.cpp
 	src/crypto/nullstripfilter.cpp
 	src/mainwindow.cpp
+	src/cryptopanel.cpp
 	src/wxwin/window.cpp
 )
 add_dependencies(escutils cryptopp)

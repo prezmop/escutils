@@ -2,22 +2,14 @@
 #define MAINWINDOW_HPP_
 
 #include "wxwin/window.h"
-#include <iostream>
+#include "cryptopanel.hpp"
 
-enum cryptoMode                         {  decr = 0,  encr = 1};
-const std::string cryptoExtensions[2] = {"_decr"   ,"_encr"   };
-
-class MainWindow : public MainWindowBase
-{
+class MainWindow : public MainWindowBase {
 public:
-	MainWindow( wxWindow* parent ) : MainWindowBase( parent ) {}
+	MainWindow();
 protected:
-	void cryptoModeSelected( wxCommandEvent& ) override;
-	void cryptoFilePicked( wxFileDirPickerEvent& ) override;
-	void cryptoSave( wxCommandEvent& ) override;
-	void mainWinClose( wxCloseEvent& ) override;
-private:
-	cryptoMode currentMode = cryptoMode::decr;
+	void winClose( wxCloseEvent& ) override;
+	CryptoPanel* crypto;
 };
 
 #endif
