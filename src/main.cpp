@@ -1,7 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <cryptopp/hex.h>
-#include <sstream>
 #include <wx/wx.h>
 
 #include "crypto/cryptography.hpp"
