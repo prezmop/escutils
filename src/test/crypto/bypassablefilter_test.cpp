@@ -28,7 +28,7 @@ TEST_CASE("bypassable filter","[BypassableFilter]"){
 		REQUIRE_NOTHROW(bypasspipeline({},false));
 	}
 	SECTION("does not alter pipeline contents on its own"){
-		REQUIRE(bypasspipeline(std::vector<CryptoPP::byte>(11,'@'),false) ==
-			std::vector<CryptoPP::byte>(11,'@'));
+		REQUIRE(bypasspipeline(std::vector<CryptoPP::byte>(11,'a'),false) ==
+			std::vector<CryptoPP::byte>(11,'a'));
 	}
 }
