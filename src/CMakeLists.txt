@@ -1,18 +1,29 @@
+cmake_minimum_required (VERSION 3.21)
 
-if(WIN32)
-add_executable(escutils WIN32)
-else()
-add_executable(escutils)
-endif()
-target_sources(escutils PRIVATE
-	main.cpp
+add_library(libescutils STATIC
 	mainwindow.cpp
 	cryptopanel.cpp
 	crypto/cryptography.cpp
 	crypto/nullstripfilter.cpp
 	wxwin/window.cpp
 )
-add_dependencies(escutils cryptopp)
-target_include_directories(escutils PRIVATE ${CRYPTOPP_INCLUDE})
-target_link_libraries(escutils ${CRYPTOPP_LIB})
-target_link_libraries(escutils ${WX_LIB})
+add_dependencies(libescutils cryptopp)
+target_include_directories(libescutils PUBLIC ${CRYPTOPP_INCLUDE})
+target_link_libraries(libescutils ${CRYPTOPP_LIB})
+target_link_libraries(libescutils ${WX_LIB})
+target_include_directories(libescutils INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+
+if(WIN32)
+add_executable(escutils WIN32 main.cpp)
+else()
+add_executable(escutils main.cpp)
+endif()
+
+include(CMakePrintHelpers)
+cmake_print_variables(CMAKE_CURRENT_SOURCE_DIR)
+
+target_link_libraries(escutils libescutils)
+
+if(BUILD_TESTING)
+	add_subdirectory(test)
+endif()

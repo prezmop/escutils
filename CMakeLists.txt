@@ -16,5 +16,7 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -pthread")
 
 endif()
 
+include(CTest)
+
 include(libs.cmake)
 add_subdirectory(src)
