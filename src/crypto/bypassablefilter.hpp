@@ -1,7 +1,6 @@
 #ifndef CRYPTO_BYPASSABLEFILTER_HPP_
 #define CRYPTO_BYPASSABLEFILTER_HPP_
 
-#include <memory>
 #include <cryptopp/filters.h>
 
 class BypassableFilter : public CryptoPP::Filter {
