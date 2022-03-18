@@ -19,9 +19,6 @@ else()
 add_executable(escutils main.cpp)
 endif()
 
-include(CMakePrintHelpers)
-cmake_print_variables(CMAKE_CURRENT_SOURCE_DIR)
-
 target_link_libraries(escutils libescutils)
 
 if(BUILD_TESTING)
